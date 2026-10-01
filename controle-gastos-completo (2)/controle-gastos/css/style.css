@@ -1,0 +1,276 @@
+/* ============================================================
+   style.css — fundação: reset, tokens de tema, tipografia, layout
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ---------- Tokens de tema ---------- */
+:root,
+[data-tema="light"] {
+  --cor-fundo: #EDEDE6;
+  --cor-superficie: #FFFFFF;
+  --cor-superficie-alt: #F5F4EE;
+  --cor-borda: #D8D5C9;
+  --cor-texto: #1C2321;
+  --cor-texto-suave: #5B6560;
+  --cor-receita: #2F6F4E;
+  --cor-receita-fundo: #E4EFE8;
+  --cor-despesa: #8B3A3A;
+  --cor-despesa-fundo: #F3E6E4;
+  --cor-destaque: #B8860B;
+  --cor-destaque-fundo: #F5EBD3;
+  --cor-foco: #2F6F4E;
+  --sombra-card: 0 1px 2px rgba(28, 35, 33, 0.06), 0 4px 14px rgba(28, 35, 33, 0.05);
+}
+
+[data-tema="dark"] {
+  --cor-fundo: #14171A;
+  --cor-superficie: #1D2124;
+  --cor-superficie-alt: #23282B;
+  --cor-borda: #3A4240;
+  --cor-texto: #E8E6DF;
+  --cor-texto-suave: #A8B3AE;
+  --cor-receita: #4E9A72;
+  --cor-receita-fundo: #1C2B23;
+  --cor-despesa: #C06561;
+  --cor-despesa-fundo: #2E1F1E;
+  --cor-destaque: #D4A62E;
+  --cor-destaque-fundo: #2B2412;
+  --cor-foco: #4E9A72;
+  --sombra-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Reset ---------- */
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* algarismos monetários sempre tabulares e monoespaçados, como num razão contábil */
+.valor-monetario, .mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Transições suaves para elementos interativos */
+a, button, input, select, textarea, .card, .menu-item, .botao {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* ---------- Régua de ledger (assinatura visual) ---------- */
+.ledger-bg {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    var(--cor-borda) 28px
+  );
+  background-position: 0 4px;
+}
+
+/* ---------- Layout: shell com sidebar ---------- */
+.app-shell {
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--cor-superficie);
+  border-right: 1px solid var(--cor-borda);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: width 0.2s ease, padding 0.2s ease;
+  overflow: hidden;
+}
+
+.sidebar--recolhida { width: 76px; }
+.sidebar--recolhida .menu-item span,
+.sidebar--recolhida .marca-nome,
+.sidebar--recolhida .marca-subtitulo { display: none; }
+.sidebar--recolhida .marca { justify-content: center; }
+
+.app-shell:has(.sidebar--recolhida) {
+  grid-template-columns: 76px 1fr;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 22px;
+  border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: 14px;
+}
+
+.marca-selo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--cor-receita);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  color: var(--cor-receita);
+  flex-shrink: 0;
+}
+
+.marca-nome {
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.marca-subtitulo {
+  font-size: 0.72rem;
+  color: var(--cor-texto-suave);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--cor-texto-suave);
+  font-weight: 500;
+}
+
+.menu-item:hover { background: var(--cor-superficie-alt); color: var(--cor-texto); }
+
+.menu-item--ativo {
+  background: var(--cor-receita-fundo);
+  color: var(--cor-receita);
+}
+
+.menu-item .icone { width: 20px; text-align: center; flex-shrink: 0; }
+
+.menu-separador {
+  margin: 14px 10px 6px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cor-texto-suave);
+  opacity: 0.7;
+}
+
+.sidebar--recolhida .menu-separador { visibility: hidden; height: 8px; }
+
+/* ---------- Conteúdo principal ---------- */
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+}
+
+.topo-titulo h1 { font-size: 1.3rem; }
+.topo-titulo p { color: var(--cor-texto-suave); font-size: 0.85rem; margin-top: 2px; }
+
+.topo-acoes { display: flex; align-items: center; gap: 14px; }
+
+.botao-icone {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--cor-texto);
+}
+
+.avatar-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar-circulo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--cor-receita);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.82rem;
+  font-family: 'Lora', serif;
+}
+
+.pagina {
+  padding: 26px 28px 60px;
+  flex: 1;
+}
+
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.toast {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-receita);
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: var(--sombra-card);
+  font-size: 0.88rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  max-width: 320px;
+}
+
+.toast--visivel { opacity: 1; transform: translateY(0); }
+.toast--erro { border-left-color: var(--cor-despesa); }
+.toast--sucesso { border-left-color: var(--cor-receita); }

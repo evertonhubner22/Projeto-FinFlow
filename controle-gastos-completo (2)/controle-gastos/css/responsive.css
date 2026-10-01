@@ -1,0 +1,61 @@
+/* ============================================================
+   responsive.css — ajustes por breakpoint
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .grade-cards { grid-template-columns: repeat(2, 1fr); }
+  .linha-campos { grid-template-columns: 1fr; }
+}
+
+/* Notebook pequeno / tablet grande */
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 76px 1fr; }
+  .sidebar { padding: 16px 10px; }
+  .sidebar .menu-item span,
+  .sidebar .marca-nome,
+  .sidebar .marca-subtitulo { display: none; }
+  .sidebar .marca { justify-content: center; }
+  .sidebar--recolhida { display: none; }
+}
+
+/* Smartphone */
+@media (max-width: 640px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    z-index: 150;
+    left: 0; top: 0; bottom: 0;
+    width: 240px !important;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 8px 0 32px rgba(0,0,0,0.2);
+  }
+  .sidebar.sidebar--movel-aberta { transform: translateX(0); }
+  .sidebar .menu-item span,
+  .sidebar .marca-nome,
+  .sidebar .marca-subtitulo { display: inline; }
+  .sidebar .marca { justify-content: flex-start; }
+
+  /* Fundo escurecido atrás da sidebar mobile */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 140;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+  }
+  .sidebar-backdrop--visivel {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .topo { padding: 14px 16px; }
+  .pagina { padding: 18px 16px 40px; }
+  .grade-cards { grid-template-columns: 1fr; }
+  .topo-titulo h1 { font-size: 1.05rem; }
+  .avatar-usuario span { display: none; }
+  .barra-filtros { flex-direction: column; align-items: stretch; }
+}

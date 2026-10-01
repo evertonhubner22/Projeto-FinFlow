@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Entrar — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="tela-auth">
+    <aside class="auth-vitrine">
+      <div class="auth-vitrine__marca">
+        <div class="auth-vitrine__selo">R</div>
+        <strong>Razão</strong>
+      </div>
+      <div>
+        <h2 class="auth-vitrine__titulo">Cada centavo, registrado com a precisão de um livro-razão.</h2>
+        <p class="auth-vitrine__citacao">Um controle financeiro pessoal que trata seu dinheiro com o rigor de uma contabilidade real.</p>
+      </div>
+      <p style="font-size:0.78rem; opacity:0.7; position:relative;">Sistema desenvolvido como Trabalho de Conclusão de Curso.</p>
+    </aside>
+
+    <div class="auth-form-lado">
+      <div class="auth-caixa">
+        <h1>Bem-vindo de volta</h1>
+        <p class="subtitulo">Entre com sua conta para continuar.</p>
+
+        <form id="form-login" novalidate>
+          <div class="campo" id="campo-email">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="username" required>
+            <span class="campo-erro">Informe um e-mail válido.</span>
+          </div>
+
+          <div class="campo" id="campo-senha">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="••••••••" autocomplete="current-password" required>
+            <span class="campo-erro">A senha deve ter pelo menos 8 caracteres.</span>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom:18px;">
+            <a href="recuperar-senha.html" class="botao--texto" style="font-size:0.84rem;">Esqueceu a senha?</a>
+          </div>
+
+          <button type="submit" class="botao botao--primario botao--bloco">Entrar</button>
+        </form>
+
+        <p class="auth-rodape">Ainda não tem conta? <a href="cadastro.html" style="color:var(--cor-receita); font-weight:600;">Criar conta</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

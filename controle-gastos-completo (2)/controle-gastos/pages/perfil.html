@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Perfil — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/perfil.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-pagina="perfil" data-titulo="Perfil" data-subtitulo="Gerencie os dados da sua conta">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topo" id="topo"></header>
+
+      <main class="pagina">
+        <div class="grade-perfil">
+          <div>
+            <div class="card" style="margin-bottom:18px;">
+              <h3 style="margin-bottom:18px;">Dados pessoais</h3>
+              <form id="form-perfil">
+                <div class="campo" id="campo-perfil-nome">
+                  <label for="perfil-nome">Nome completo</label>
+                  <input type="text" id="perfil-nome" required>
+                  <span class="campo-erro">Informe seu nome.</span>
+                </div>
+                <div class="campo" id="campo-perfil-email">
+                  <label for="perfil-email">E-mail</label>
+                  <input type="email" id="perfil-email" required>
+                  <span class="campo-erro">E-mail inválido ou já usado por outra conta.</span>
+                </div>
+                <button type="submit" class="botao botao--primario">Salvar alterações</button>
+              </form>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom:18px;">Alterar senha</h3>
+              <form id="form-senha">
+                <div class="campo" id="campo-senha-atual">
+                  <label for="senha-atual">Senha atual</label>
+                  <input type="password" id="senha-atual" required>
+                  <span class="campo-erro">Senha atual incorreta.</span>
+                </div>
+                <div class="linha-campos">
+                  <div class="campo" id="campo-nova-senha">
+                    <label for="nova-senha">Nova senha</label>
+                    <input type="password" id="nova-senha" required>
+                    <span class="campo-erro">Mínimo de 8 caracteres.</span>
+                  </div>
+                  <div class="campo" id="campo-confirmar-nova-senha">
+                    <label for="confirmar-nova-senha">Confirmar nova senha</label>
+                    <input type="password" id="confirmar-nova-senha" required>
+                    <span class="campo-erro">As senhas não coincidem.</span>
+                  </div>
+                </div>
+                <button type="submit" class="botao botao--secundario">Atualizar senha</button>
+              </form>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="text-align:center; margin-bottom:18px;">
+              <div class="avatar-circulo" id="perfil-avatar" style="width:64px;height:64px;font-size:1.3rem;margin:0 auto 14px; overflow:hidden; position:relative;">
+                <img id="perfil-foto" style="width:100%; height:100%; object-fit:cover; display:none;" alt="Foto de perfil">
+                <span id="perfil-iniciais"></span>
+              </div>
+              <h3 id="perfil-nome-exibicao"></h3>
+              <p style="color:var(--cor-texto-suave); font-size:0.85rem; margin-top:4px;" id="perfil-email-exibicao"></p>
+              <p style="color:var(--cor-texto-suave); font-size:0.78rem; margin-top:10px;" id="perfil-membro-desde"></p>
+              <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px; align-items:center;">
+                <label class="botao botao--secundario" style="padding:7px 14px; font-size:0.82rem; cursor:pointer;">
+                  <input type="file" id="input-foto-perfil" accept="image/*" style="display:none;">
+                  Alterar foto
+                </label>
+                <button class="botao botao--texto" id="botao-remover-foto" style="font-size:0.78rem; display:none;">Remover foto</button>
+              </div>
+            </div>
+
+            <div class="card" style="text-align:center;">
+              <h3 style="margin-bottom:6px; font-size:0.95rem;">Aparência</h3>
+              <p style="color:var(--cor-texto-suave); font-size:0.82rem; margin-bottom:14px;">Escolha entre tema claro ou escuro.</p>
+              <button class="botao botao--secundario botao--bloco" id="botao-alternar-tema-perfil">Alternar tema</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/perfil.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Metas — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/metas.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-pagina="metas" data-titulo="Metas financeiras" data-subtitulo="Defina objetivos e acompanhe seu progresso">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topo" id="topo"></header>
+
+      <main class="pagina">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:16px;">
+          <button class="botao botao--primario" id="botao-nova-meta">+ Nova meta</button>
+        </div>
+
+        <div class="grade-metas" id="grade-metas"></div>
+
+        <div id="estado-vazio-metas" style="display:none;" class="estado-vazio card">
+          <h3>Nenhuma meta criada ainda</h3>
+          <p>Defina um objetivo financeiro, como "Reserva de emergência" ou "Viagem", e acompanhe seu progresso aqui.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: nova/editar meta -->
+  <div class="modal-fundo" id="modal-meta">
+    <div class="modal">
+      <div class="modal-cabecalho">
+        <h3 id="titulo-modal-meta">Nova meta</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-meta">✕</button>
+      </div>
+      <form id="form-meta">
+        <input type="hidden" id="meta-id">
+
+        <div class="campo" id="campo-meta-descricao">
+          <label for="meta-descricao">Nome da meta</label>
+          <input type="text" id="meta-descricao" placeholder="Ex: Reserva de emergência" required>
+          <span class="campo-erro">Informe um nome para a meta.</span>
+        </div>
+
+        <div class="linha-campos">
+          <div class="campo" id="campo-meta-valor-alvo">
+            <label for="meta-valor-alvo">Valor alvo (R$)</label>
+            <input type="number" id="meta-valor-alvo" min="0.01" step="0.01" placeholder="0,00" required>
+            <span class="campo-erro">Informe um valor maior que zero.</span>
+          </div>
+          <div class="campo" id="campo-meta-valor-atual">
+            <label for="meta-valor-atual">Valor já guardado (R$)</label>
+            <input type="number" id="meta-valor-atual" min="0" step="0.01" placeholder="0,00">
+            <span class="campo-erro">O valor guardado não pode ser negativo.</span>
+          </div>
+        </div>
+
+        <div class="campo" id="campo-meta-prazo">
+          <label for="meta-prazo">Prazo (opcional)</label>
+          <input type="date" id="meta-prazo">
+          <span class="campo-erro">Informe uma data válida.</span>
+        </div>
+
+        <div class="modal-rodape">
+          <button type="button" class="botao botao--secundario" data-fechar-modal="modal-meta">Cancelar</button>
+          <button type="submit" class="botao botao--primario">Salvar meta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: adicionar valor à meta -->
+  <div class="modal-fundo" id="modal-aporte">
+    <div class="modal" style="max-width:380px;">
+      <div class="modal-cabecalho">
+        <h3>Adicionar valor</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-aporte">✕</button>
+      </div>
+      <form id="form-aporte">
+        <input type="hidden" id="aporte-meta-id">
+        <div class="campo" id="campo-aporte-valor">
+          <label for="aporte-valor">Valor a adicionar (R$)</label>
+          <input type="number" id="aporte-valor" min="0.01" step="0.01" placeholder="0,00" required>
+          <span class="campo-erro">Informe um valor maior que zero.</span>
+        </div>
+        <div class="modal-rodape">
+          <button type="button" class="botao botao--secundario" data-fechar-modal="modal-aporte">Cancelar</button>
+          <button type="submit" class="botao botao--primario">Adicionar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: confirmar exclusão -->
+  <div class="modal-fundo" id="modal-excluir-meta">
+    <div class="modal" style="max-width:380px;">
+      <div class="modal-cabecalho">
+        <h3>Excluir meta</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-excluir-meta">✕</button>
+      </div>
+      <p style="font-size:0.9rem; color:var(--cor-texto-suave);">Tem certeza que deseja excluir esta meta? Esta ação não pode ser desfeita.</p>
+      <div class="modal-rodape">
+        <button type="button" class="botao botao--secundario" data-fechar-modal="modal-excluir-meta">Cancelar</button>
+        <button type="button" class="botao botao--perigo" id="botao-confirmar-exclusao-meta">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/metas.js"></script>
+</body>
+</html>

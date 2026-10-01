@@ -1,0 +1,65 @@
+/* ============================================================
+   metas.css — grade de cards de metas financeiras
+   ============================================================ */
+
+.grade-metas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.card-meta__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-meta__nome {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  font-size: 1.02rem;
+  padding-right: 40px;
+}
+
+.card-meta__prazo {
+  font-size: 0.78rem;
+  color: var(--cor-texto-suave);
+}
+
+.card-meta__valores {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.86rem;
+}
+
+.card-meta__valores strong {
+  font-size: 1.05rem;
+}
+
+.card-meta__percentual {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.card-meta__acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (max-width: 1200px) {
+  .grade-metas { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .grade-metas { grid-template-columns: 1fr; }
+}

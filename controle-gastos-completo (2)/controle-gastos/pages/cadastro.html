@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Criar conta — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="tela-auth">
+    <aside class="auth-vitrine">
+      <div class="auth-vitrine__marca">
+        <div class="auth-vitrine__selo">R</div>
+        <strong>Razão</strong>
+      </div>
+      <div>
+        <h2 class="auth-vitrine__titulo">Comece a lançar suas receitas e despesas hoje mesmo.</h2>
+        <p class="auth-vitrine__citacao">Sua conta, suas metas e seu histórico financeiro guardados neste navegador.</p>
+      </div>
+      <p style="font-size:0.78rem; opacity:0.7; position:relative;">Sistema desenvolvido como Trabalho de Conclusão de Curso.</p>
+    </aside>
+
+    <div class="auth-form-lado">
+      <div class="auth-caixa">
+        <h1>Criar sua conta</h1>
+        <p class="subtitulo">Leva menos de um minuto.</p>
+
+        <form id="form-cadastro" novalidate>
+          <div class="campo" id="campo-nome">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+            <span class="campo-erro">Informe seu nome.</span>
+          </div>
+
+          <div class="campo" id="campo-email">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="email" required>
+            <span class="campo-erro">E-mail inválido ou já cadastrado.</span>
+          </div>
+
+          <div class="campo" id="campo-senha">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres" autocomplete="new-password" required>
+            <div class="forca-senha"><span></span><span></span><span></span><span></span></div>
+            <span class="campo-erro">A senha deve ter pelo menos 8 caracteres.</span>
+          </div>
+
+          <div class="campo" id="campo-confirmar-senha">
+            <label for="confirmar-senha">Confirmar senha</label>
+            <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Repita a senha" autocomplete="new-password" required>
+            <span class="campo-erro">As senhas não coincidem.</span>
+          </div>
+
+          <button type="submit" class="botao botao--primario botao--bloco">Criar conta</button>
+        </form>
+
+        <p class="auth-rodape">Já tem conta? <a href="login.html" style="color:var(--cor-receita); font-weight:600;">Entrar</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/cadastro.js"></script>
+</body>
+</html>

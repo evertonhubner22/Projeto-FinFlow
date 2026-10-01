@@ -1,0 +1,396 @@
+/* ============================================================
+   components.css — componentes reutilizáveis em todo o sistema
+   ============================================================ */
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+}
+
+.botao:active { transform: scale(0.98); }
+
+.botao--primario {
+  background: var(--cor-receita);
+  color: #fff;
+}
+.botao--primario:hover { box-shadow: 0 4px 14px rgba(47, 111, 78, 0.28); }
+
+.botao--secundario {
+  background: transparent;
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+.botao--secundario:hover { background: var(--cor-superficie-alt); }
+
+.botao--perigo {
+  background: var(--cor-despesa);
+  color: #fff;
+}
+.botao--perigo:hover { box-shadow: 0 4px 14px rgba(139, 58, 58, 0.28); }
+
+.botao--texto {
+  background: transparent;
+  color: var(--cor-receita);
+  padding: 6px 4px;
+}
+
+.botao--bloco { width: 100%; }
+.botao:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ---------- Formulários ---------- */
+.campo { margin-bottom: 16px; }
+
+.campo label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--cor-texto-suave);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  transition: border-color 0.15s ease;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--cor-foco);
+}
+
+.campo-erro {
+  font-size: 0.78rem;
+  color: var(--cor-despesa);
+  margin-top: 5px;
+  display: none;
+}
+
+.campo--invalido input,
+.campo--invalido select { border-color: var(--cor-despesa); }
+.campo--invalido .campo-erro { display: block; }
+
+.linha-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--sombra-card);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--cor-foco);
+}
+
+.grade-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.card-metrica .rotulo {
+  font-size: 0.82rem;
+  color: var(--cor-texto-suave);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-metrica .valor {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.card-metrica .variacao {
+  font-size: 0.78rem;
+  margin-top: 6px;
+  color: var(--cor-texto-suave);
+}
+
+.card-metrica .variacao--positiva { color: var(--cor-receita); }
+.card-metrica .variacao--negativa { color: var(--cor-despesa); }
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge--receita { background: var(--cor-receita-fundo); color: var(--cor-receita); }
+.badge--despesa { background: var(--cor-despesa-fundo); color: var(--cor-despesa); }
+.badge--destaque { background: var(--cor-destaque-fundo); color: var(--cor-destaque); }
+
+/* selo de meta concluída (assinatura visual) */
+.selo-concluido {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--cor-destaque);
+  color: var(--cor-destaque);
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+}
+
+/* ---------- Tabelas ---------- */
+.tabela-wrap { overflow-x: auto; }
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.tabela th {
+  text-align: left;
+  padding: 12px 14px;
+  color: var(--cor-texto-suave);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.tabela td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.tabela tbody tr { transition: background-color 0.15s ease; }
+.tabela tbody tr:hover { background: var(--cor-superficie-alt); }
+
+.acoes-linha { display: flex; gap: 8px; }
+
+.acao-icone {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+}
+.acao-icone:hover { background: var(--cor-superficie-alt); color: var(--cor-texto); }
+
+/* ---------- Barra de progresso (metas) ---------- */
+.barra-progresso {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--cor-superficie-alt);
+  border: 1px solid var(--cor-borda);
+  overflow: hidden;
+}
+
+.barra-progresso__preenchimento {
+  height: 100%;
+  background: var(--cor-receita);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.barra-progresso__preenchimento--alerta { background: var(--cor-destaque); }
+.barra-progresso__preenchimento--excedido { background: var(--cor-despesa); }
+
+/* ---------- Filtros e busca ---------- */
+.barra-filtros {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.campo-busca {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.campo-busca input { padding-left: 36px; }
+
+.campo-busca::before {
+  content: '⚲';
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cor-texto-suave);
+}
+
+.select-filtro {
+  padding: 10px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+}
+
+/* ---------- Paginação (simulada) ---------- */
+.paginacao {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.paginacao button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-size: 0.84rem;
+}
+
+.paginacao button.ativo {
+  background: var(--cor-receita);
+  border-color: var(--cor-receita);
+  color: #fff;
+}
+
+/* ---------- Modais ---------- */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 23, 26, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal-fundo--aberto { display: flex; }
+
+.modal {
+  background: var(--cor-superficie);
+  border-radius: 14px;
+  padding: 26px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: modal-entrar 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .modal {
+    padding: 20px 16px;
+    max-height: 92vh;
+    border-radius: 12px;
+  }
+
+  .modal-cabecalho h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal-rodape {
+    flex-direction: column-reverse;
+  }
+
+  .modal-rodape .botao {
+    width: 100%;
+  }
+}
+
+@keyframes modal-entrar {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.modal-fechar {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--cor-texto-suave);
+}
+
+.modal-rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ---------- Estado vazio ---------- */
+.estado-vazio {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--cor-texto-suave);
+  background: var(--cor-superficie-alt);
+  border: 2px dashed var(--cor-borda);
+  border-radius: 12px;
+  margin: 16px 0;
+}
+
+.estado-vazio h3 { color: var(--cor-texto); margin-bottom: 8px; font-size: 1.05rem; }
+.estado-vazio p { font-size: 0.9rem; max-width: 400px; margin: 0 auto; }
+
+.estado-vazio::before {
+  content: '◎';
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+/* ---------- Alertas / insights financeiros ---------- */
+.alerta-insight {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--cor-superficie-alt);
+  border: 1px solid var(--cor-borda);
+  font-size: 0.86rem;
+  margin-bottom: 10px;
+}
+
+.alerta-insight__icone { font-size: 1.1rem; }

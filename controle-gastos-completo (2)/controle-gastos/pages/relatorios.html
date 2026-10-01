@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Relatórios — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/relatorios.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-pagina="relatorios" data-titulo="Relatórios" data-subtitulo="Análise completa da sua vida financeira">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topo" id="topo"></header>
+
+      <main class="pagina">
+        <div class="barra-filtros" style="margin-bottom:20px;">
+          <select class="select-filtro" id="filtro-periodo">
+            <option value="semanal">Semanal (últimas 8 semanas)</option>
+            <option value="mensal" selected>Mensal (últimos 6 meses)</option>
+            <option value="trimestral">Trimestral (últimos 3 meses)</option>
+            <option value="semestral">Semestral (últimos 6 meses)</option>
+            <option value="anual">Anual (últimos 12 meses)</option>
+          </select>
+        </div>
+
+        <div class="grade-relatorios">
+          <div class="card card-grafico">
+            <h3>Receitas x Despesas</h3>
+            <p class="legenda-grafico">Comparativo mensal</p>
+            <canvas id="grafico-receitas-despesas"></canvas>
+          </div>
+
+          <div class="card card-grafico">
+            <h3>Evolução financeira</h3>
+            <p class="legenda-grafico">Saldo acumulado ao longo do tempo</p>
+            <canvas id="grafico-evolucao"></canvas>
+          </div>
+
+          <div class="card card-grafico">
+            <h3>Gastos por categoria</h3>
+            <p class="legenda-grafico">Distribuição do período selecionado</p>
+            <canvas id="grafico-categoria-pizza"></canvas>
+          </div>
+
+          <div class="card card-grafico">
+            <h3>Economia mensal</h3>
+            <p class="legenda-grafico">Receitas menos despesas por mês</p>
+            <canvas id="grafico-economia-area"></canvas>
+          </div>
+
+          <div class="card card-grafico">
+            <h3>Receitas por mês</h3>
+            <p class="legenda-grafico">Total de entradas por mês</p>
+            <canvas id="grafico-receitas-mes"></canvas>
+          </div>
+
+          <div class="card card-grafico">
+            <h3>Despesas por mês</h3>
+            <p class="legenda-grafico">Total de saídas por mês</p>
+            <canvas id="grafico-despesas-mes"></canvas>
+          </div>
+
+          <div class="card card-grafico" style="grid-column: 1 / -1;">
+            <h3>Progresso das metas</h3>
+            <p class="legenda-grafico">Percentual atingido de cada meta financeira</p>
+            <canvas id="grafico-metas-indicador"></canvas>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/relatorios.js"></script>
+</body>
+</html>

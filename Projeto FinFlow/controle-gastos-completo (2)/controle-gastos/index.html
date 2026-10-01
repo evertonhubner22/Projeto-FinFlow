@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Razão — Controle de Gastos Pessoais</title>
+  <meta http-equiv="refresh" content="0; url=pages/login.html">
+</head>
+<body>
+  <script src="js/storage.js"></script>
+  <script>
+    // Se já existir sessão ativa, pula direto para a área correta
+    const sessao = Storage.getSession();
+    if (sessao) {
+      const usuario = Storage.getCurrentUser();
+      if (usuario) {
+        window.location.replace(usuario.tipo === 'admin' ? 'pages/admin.html' : 'pages/dashboard.html');
+      } else {
+        window.location.replace('pages/login.html');
+      }
+    } else {
+      window.location.replace('pages/login.html');
+    }
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=pages/login.html">
+  </noscript>
+</body>
+</html>

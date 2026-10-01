@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Receitas — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-pagina="receitas" data-titulo="Receitas" data-subtitulo="Gerencie suas entradas financeiras">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topo" id="topo"></header>
+
+      <main class="pagina">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:16px;">
+          <button class="botao botao--primario" id="botao-nova-receita">+ Nova receita</button>
+        </div>
+
+        <div class="card">
+          <div class="barra-filtros">
+            <div class="campo-busca">
+              <input type="text" id="busca-receitas" placeholder="Pesquisar por descrição...">
+            </div>
+            <select class="select-filtro" id="filtro-categoria-receita">
+              <option value="">Todas as categorias</option>
+              <option>Salário</option>
+              <option>Freelance</option>
+              <option>Investimentos</option>
+              <option>Presente</option>
+              <option>Reembolso</option>
+              <option>Outros</option>
+            </select>
+          </div>
+
+          <div class="tabela-wrap">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Categoria</th>
+                  <th>Data</th>
+                  <th>Valor</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="corpo-tabela-receitas"></tbody>
+            </table>
+          </div>
+
+          <div id="estado-vazio-receitas" style="display:none;" class="estado-vazio">
+            <h3>Nenhuma receita encontrada</h3>
+            <p>Cadastre sua primeira receita ou ajuste os filtros de busca.</p>
+          </div>
+
+          <div class="paginacao" id="paginacao-receitas"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: nova/editar receita -->
+  <div class="modal-fundo" id="modal-receita">
+    <div class="modal">
+      <div class="modal-cabecalho">
+        <h3 id="titulo-modal-receita">Nova receita</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-receita">✕</button>
+      </div>
+      <form id="form-receita">
+        <input type="hidden" id="receita-id">
+
+        <div class="campo" id="campo-receita-descricao">
+          <label for="receita-descricao">Descrição</label>
+          <input type="text" id="receita-descricao" placeholder="Ex: Salário de julho" required>
+          <span class="campo-erro">Informe uma descrição.</span>
+        </div>
+
+        <div class="linha-campos">
+          <div class="campo" id="campo-receita-valor">
+            <label for="receita-valor">Valor (R$)</label>
+            <input type="number" id="receita-valor" min="0.01" step="0.01" placeholder="0,00" required>
+            <span class="campo-erro">Informe um valor maior que zero.</span>
+          </div>
+          <div class="campo" id="campo-receita-data">
+            <label for="receita-data">Data</label>
+            <input type="date" id="receita-data" required>
+            <span class="campo-erro">Informe uma data válida (não futura).</span>
+          </div>
+        </div>
+
+        <div class="campo" id="campo-receita-categoria">
+          <label for="receita-categoria">Categoria</label>
+          <select id="receita-categoria" required>
+            <option value="">Selecione...</option>
+            <option>Salário</option>
+            <option>Freelance</option>
+            <option>Investimentos</option>
+            <option>Presente</option>
+            <option>Reembolso</option>
+            <option>Outros</option>
+          </select>
+          <span class="campo-erro">Selecione uma categoria.</span>
+        </div>
+
+        <div class="modal-rodape">
+          <button type="button" class="botao botao--secundario" data-fechar-modal="modal-receita">Cancelar</button>
+          <button type="submit" class="botao botao--primario">Salvar receita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: confirmar exclusão -->
+  <div class="modal-fundo" id="modal-excluir-receita">
+    <div class="modal" style="max-width:380px;">
+      <div class="modal-cabecalho">
+        <h3>Excluir receita</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-excluir-receita">✕</button>
+      </div>
+      <p style="font-size:0.9rem; color:var(--cor-texto-suave);">Tem certeza que deseja excluir esta receita? Esta ação não pode ser desfeita.</p>
+      <div class="modal-rodape">
+        <button type="button" class="botao botao--secundario" data-fechar-modal="modal-excluir-receita">Cancelar</button>
+        <button type="button" class="botao botao--perigo" id="botao-confirmar-exclusao-receita">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/receitas.js"></script>
+</body>
+</html>

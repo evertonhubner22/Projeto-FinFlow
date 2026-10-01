@@ -1,0 +1,17 @@
+/* ============================================================
+   relatorios.css — grade de múltiplos gráficos
+   ============================================================ */
+
+.grade-relatorios {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.grade-relatorios .card-grafico canvas {
+  max-height: 260px;
+}
+
+@media (max-width: 1024px) {
+  .grade-relatorios { grid-template-columns: 1fr; }
+}

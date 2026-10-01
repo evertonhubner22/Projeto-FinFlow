@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Recuperar senha — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="tela-auth">
+    <aside class="auth-vitrine">
+      <div class="auth-vitrine__marca">
+        <div class="auth-vitrine__selo">R</div>
+        <strong>Razão</strong>
+      </div>
+      <div>
+        <h2 class="auth-vitrine__titulo">Acontece. Vamos te ajudar a voltar para as suas contas.</h2>
+        <p class="auth-vitrine__citacao">Esta é apenas uma simulação de interface para fins do TCC — nenhum e-mail é enviado de fato.</p>
+      </div>
+      <p style="font-size:0.78rem; opacity:0.7; position:relative;">Sistema desenvolvido como Trabalho de Conclusão de Curso.</p>
+    </aside>
+
+    <div class="auth-form-lado">
+      <div class="auth-caixa" id="bloco-formulario">
+        <h1>Recuperar senha</h1>
+        <p class="subtitulo">Informe o e-mail associado à sua conta.</p>
+
+        <form id="form-recuperar" novalidate>
+          <div class="campo" id="campo-email">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+            <span class="campo-erro">Informe um e-mail válido.</span>
+          </div>
+
+          <button type="submit" class="botao botao--primario botao--bloco">Enviar link de recuperação</button>
+        </form>
+
+        <p class="auth-rodape"><a href="login.html" style="color:var(--cor-receita); font-weight:600;">← Voltar para o login</a></p>
+      </div>
+
+      <div class="auth-caixa" id="bloco-confirmacao" style="display:none; text-align:center;">
+        <div style="width:56px;height:56px;border-radius:50%;border:2px solid var(--cor-receita);color:var(--cor-receita);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.4rem;">✓</div>
+        <h1>Verifique seu e-mail</h1>
+        <p class="subtitulo">Se o e-mail informado existir em nossa base, um link de redefinição foi enviado (simulação de interface).</p>
+        <a href="login.html" class="botao botao--secundario botao--bloco" style="margin-top:10px;">Voltar para o login</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/utils.js"></script>
+  <script>
+    const form = document.getElementById('form-recuperar');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const campoEmail = document.getElementById('campo-email');
+      const email = document.getElementById('email').value.trim();
+      if (!Utils.validarEmail(email)) {
+        campoEmail.classList.add('campo--invalido');
+        return;
+      }
+      campoEmail.classList.remove('campo--invalido');
+      document.getElementById('bloco-formulario').style.display = 'none';
+      document.getElementById('bloco-confirmacao').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

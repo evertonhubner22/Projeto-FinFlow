@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cg_theme') || 'light';
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Dashboard — Razão</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-pagina="dashboard" data-titulo="Dashboard" data-subtitulo="Visão geral das suas finanças">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topo" id="topo"></header>
+
+      <main class="pagina">
+        <section class="grade-cards" id="cards-metricas">
+          <!-- cards preenchidos via dashboard.js -->
+        </section>
+
+        <div class="dashboard-grade">
+          <div>
+            <div class="painel-graficos">
+              <div class="card card-grafico">
+                <h3>Gastos por categoria</h3>
+                <p class="legenda-grafico">Despesas do mês atual</p>
+                <canvas id="grafico-categorias"></canvas>
+              </div>
+              <div class="card card-grafico">
+                <h3>Receitas x Despesas</h3>
+                <p class="legenda-grafico">Últimos 6 meses</p>
+                <canvas id="grafico-mensal"></canvas>
+              </div>
+            </div>
+
+            <div class="card" id="card-planejamento">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <h3>Planejamento financeiro do mês</h3>
+                <button class="botao botao--secundario" id="botao-definir-renda" style="padding:7px 14px; font-size:0.82rem;">Definir renda mensal</button>
+              </div>
+              <div id="conteudo-planejamento"><!-- preenchido via JS --></div>
+            </div>
+          </div>
+
+          <div class="coluna-lateral">
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <h3 style="font-size:0.95rem;">Metas financeiras</h3>
+                <a href="metas.html" class="link-ver-tudo">Ver todas</a>
+              </div>
+              <div id="lista-metas-resumo"><!-- preenchido via JS --></div>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size:0.95rem; margin-bottom:12px;">Alertas financeiros</h3>
+              <div id="lista-insights"><!-- preenchido via JS --></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: definir renda mensal -->
+  <div class="modal-fundo" id="modal-renda">
+    <div class="modal">
+      <div class="modal-cabecalho">
+        <h3>Renda mensal</h3>
+        <button class="modal-fechar" data-fechar-modal="modal-renda">✕</button>
+      </div>
+      <form id="form-renda">
+        <div class="campo" id="campo-renda">
+          <label for="input-renda">Valor da sua renda mensal (R$)</label>
+          <input type="number" id="input-renda" min="0" step="0.01" placeholder="0,00" required>
+          <span class="campo-erro">Informe um valor válido maior que zero.</span>
+        </div>
+        <div class="modal-rodape">
+          <button type="button" class="botao botao--secundario" data-fechar-modal="modal-renda">Cancelar</button>
+          <button type="submit" class="botao botao--primario">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

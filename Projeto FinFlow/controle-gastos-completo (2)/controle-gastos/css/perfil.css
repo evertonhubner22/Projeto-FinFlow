@@ -1,0 +1,18 @@
+/* ============================================================
+   perfil.css — layout da página de perfil
+   ============================================================ */
+
+.grade-perfil {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.grade-perfil .avatar-circulo {
+  font-family: 'Lora', serif;
+}
+
+@media (max-width: 1024px) {
+  .grade-perfil { grid-template-columns: 1fr; }
+}

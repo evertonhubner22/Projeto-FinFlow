@@ -1,0 +1,134 @@
+/* ============================================================
+   login.css — telas de autenticação
+   ============================================================ */
+
+.tela-auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-vitrine {
+  background: linear-gradient(165deg, #1C2321 0%, #253530 55%, #2F6F4E 130%);
+  color: #F5F4EE;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-vitrine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom, transparent, transparent 31px, rgba(245,244,238,0.06) 32px
+  );
+  pointer-events: none;
+}
+
+.auth-vitrine__marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.auth-vitrine__selo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #F5F4EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+}
+
+.auth-vitrine__titulo {
+  font-family: 'Lora', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  max-width: 420px;
+  line-height: 1.3;
+  position: relative;
+  margin-top: 30px;
+}
+
+.auth-vitrine__citacao {
+  font-size: 0.92rem;
+  opacity: 0.82;
+  max-width: 380px;
+  position: relative;
+  border-left: 2px solid rgba(245,244,238,0.4);
+  padding-left: 14px;
+}
+
+.auth-form-lado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: var(--cor-fundo);
+}
+
+.auth-caixa {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-caixa h1 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.auth-caixa .subtitulo {
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.auth-rodape {
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--cor-texto-suave);
+  margin-top: 20px;
+}
+
+.auth-divisor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cor-texto-suave);
+  font-size: 0.78rem;
+  margin: 18px 0;
+}
+
+.auth-divisor::before,
+.auth-divisor::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cor-borda);
+}
+
+.forca-senha {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.forca-senha span {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  background: var(--cor-borda);
+}
+
+@media (max-width: 900px) {
+  .tela-auth { grid-template-columns: 1fr; }
+  .auth-vitrine { display: none; }
+}
